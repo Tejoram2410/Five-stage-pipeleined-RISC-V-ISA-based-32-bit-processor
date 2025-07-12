@@ -20,13 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Fetch_Stage(input wire CLK,PCSrcE,StallF,StallD,FlushD,
-                   input wire [31:0] PCTargetE,
+module Fetch_Stage(input wire CLK,StallF,StallD,FlushD,
+                   input wire [1:0] PCSrcE,
+                   input wire [31:0] PCTargetE,ALUResultE,
                    output reg [31:0] InstrD, PCD, PCPlus4D);
-wire [31:0] PCF,PCPlus4F,PCF1,InstrF;
+wire [31:0] PCF,PCPlus4F,PCF1,InstrF,PCJumpR;
 wire N;
+assign PCJumpR = {ALUResultE[31:1],1'b0};
 Adder PCAdd4(PCF,32'd4,PCPlus4F);
-Multiplexer_2x1 M1(PCPlus4F,PCTargetE,PCSrcE,PCF1);
+Multiplexer_3x1 M1(PCPlus4F,PCTargetE,PCJumpR,PCSrcE,PCF1);
 Register_Enable Program_Counter(PCF1,CLK,~StallF,PCF);
 Instruction_Memory Imem(PCF,InstrF);
 assign N = ~StallD;
