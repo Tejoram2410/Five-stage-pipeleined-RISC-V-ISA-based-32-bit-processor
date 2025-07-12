@@ -70,8 +70,7 @@ All RV32I instructions are supported **except** for `SRAI`. This includes:
 - `LUI` (Load Upper Immediate)
 - `AUIPC` (Add Upper Immediate to PC)
 
-All instructions were tested through simulation using custom programs and verified using waveform analysis tools like ModelSim or GTKWave.
-
+All instructions were tested using custom programs and verified through waveform analysis in Vivado. The design was validated for both correctness and timing across all pipeline stages.
 ---
 
 ## 🧠 Instruction Encoding Formats
