@@ -21,18 +21,18 @@
 
 
 module Hazard_Unit(input wire [4:0] Rs1D,Rs2D,Rs1E,Rs2E,RdE,RdM,RdW,
-                   input wire PCSrcE,ResultSrcE,RegWriteM,RegWriteW,
+                   input wire ResultSrcE,RegWriteM,RegWriteW,
                    output wire StallF,StallD,FlushD,FlushE,
-                   output wire [1:0] ForwardAE,ForwardBE);
+                   output wire [1:0] ForwardAE,ForwardBE,PCSrcE);
 wire lwStall;
 assign ForwardAE = (((Rs1E == RdM) & RegWriteM) & (Rs1E != 5'd0)) ? 2'b10:
                    (((Rs1E == RdW) & RegWriteW) & (Rs1E != 5'd0)) ? 2'b01: 2'b00;
 assign ForwardBE = (((Rs2E == RdM) & RegWriteM) & (Rs2E != 5'd0)) ? 2'b10:
                    (((Rs2E == RdW) & RegWriteW) & (Rs2E != 5'd0)) ? 2'b01: 2'b00;
-assign FlushD = PCSrcE;
+assign FlushD = PCSrcE[1] | PCSrcE[0];
 assign lwStall = ResultSrcE & ((Rs1D ==  RdE) | (Rs2D == RdE));
 assign StallF = lwStall;
 assign StallD = lwStall;
-assign FlushE = lwStall | PCSrcE;
+assign FlushE = lwStall | PCSrcE[1] | PCSrcE[0];
 
 endmodule
