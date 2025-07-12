@@ -34,6 +34,7 @@ case(op)
 7'b1100011 : control = 11'b01000001010;
 7'b0010011 : control = 11'b10010000100;
 7'b1101111 : control = 11'b11100100001;
+7'b1100111 : control = 11'b10010100001;
 default : control = 11'b00000000000;
 endcase
 end
