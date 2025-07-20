@@ -62,9 +62,6 @@ The processor includes the following Verilog modules:
 - `BEQ`, `BNE`, `BLT`, `BGE`, `BLTU`, `BGEU`
 - `JAL`, `JALR`
 
-### Upper Immediate Instructions
-- `LUI`, `AUIPC`
-
 Each instruction has been thoroughly tested in simulation and verified using Vivado waveform analysis.
 
 ---
