@@ -216,4 +216,4 @@ RAM[13]<=32'h01c2a423;
 RAM[14]<=32'h0000006f;
 
 **Simulation result:**
-![Alt text](Screenshot 2025-07-23 225202.png)
+![Alt text](Simulation_output.png)
